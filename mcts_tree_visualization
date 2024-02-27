@@ -1,0 +1,119 @@
+// MCTS Tree
+digraph {
+	4689255056 [label="X  X  -
+
+O  -  -
+
+-  -  -
+UCT: -inf
+Winner: None
+Player: O" shape=box]
+	4689255056 -> 4683603488
+	4683603488 [label="X  X  O
+
+O  -  -
+
+-  -  X
+UCT: -0.17
+Winner: None
+Player: O" shape=box]
+	4683603488 -> 4689078544
+	4689078544 [label="X  X  O
+
+O  O  X
+
+-  -  X
+UCT: 0.82
+Winner: None
+Player: O" shape=box]
+	4689078544 -> 4682572800
+	4682572800 [label="X  X  O
+
+O  O  X
+
+O  -  X
+UCT: 0.27
+Winner: -1
+Player: X" shape=box]
+	4689078544 -> 4682573472
+	4682573472 [label="X  X  O
+
+O  O  X
+
+X  O  X
+UCT: 0.33
+Winner: 0
+Player: O" shape=box]
+	4683603488 -> 4689078016
+	4689078016 [label="X  X  O
+
+O  X  O
+
+-  -  X
+UCT: 0.81
+Winner: 1
+Player: O" shape=box]
+	4683603488 -> 4681806608
+	4681806608 [label="X  X  O
+
+O  X  -
+
+O  -  X
+UCT: 0.81
+Winner: 1
+Player: O" shape=box]
+	4683603488 -> 4682573424
+	4682573424 [label="X  X  O
+
+O  X  -
+
+-  O  X
+UCT: 0.81
+Winner: 1
+Player: O" shape=box]
+	4689255056 -> 4683600272
+	4683600272 [label="X  X  X
+
+O  O  -
+
+-  -  -
+UCT: -0.18
+Winner: 1
+Player: O" shape=box]
+	4689255056 -> 4683602240
+	4683602240 [label="X  X  X
+
+O  -  O
+
+-  -  -
+UCT: -0.18
+Winner: 1
+Player: O" shape=box]
+	4689255056 -> 4683602048
+	4683602048 [label="X  X  X
+
+O  -  -
+
+O  -  -
+UCT: -0.18
+Winner: 1
+Player: O" shape=box]
+	4689255056 -> 4683600320
+	4683600320 [label="X  X  X
+
+O  -  -
+
+-  O  -
+UCT: -0.18
+Winner: 1
+Player: O" shape=box]
+	4689255056 -> 4683602144
+	4683602144 [label="X  X  X
+
+O  -  -
+
+-  -  O
+UCT: -0.18
+Winner: 1
+Player: O" shape=box]
+}
