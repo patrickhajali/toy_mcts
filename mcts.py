@@ -1,4 +1,3 @@
-
 import random 
 import numpy as np
 import collections
@@ -14,35 +13,37 @@ class MCTSAgent():
             
         return self.root
 
-    def step(self, start_node, itermax):
+    def step(self, start_node, itermax, auto_response=True):
         '''
         Runs MCTS at the given node.
-        Returns the optimal action to take.
+        Returns the "optimal" next node.
         '''
         for i in range(itermax):
             node = start_node
-            node = self.selection(node)
+            node = self.expand_or_select(node,auto_response)
             node.backpropagate(node.rollout())
+
+        return self.policy(start_node)
         
-        next_node = self.selection_policy(start_node)
-        # next_node.UCT_value = next_node.get_UCT_value()
-        return next_node
-        
-    def selection(self, node):
+    def expand_or_select(self, node, auto_response=True):
+        '''
+        Either expands (if not all actions have been explored), 
+        or selects the optimal child based on the policy. 
+        '''
         if node.is_terminal():
             raise ValueError(f"Can't select action from terminal state {self.state}")
         
         if len(node.children) < len(node.possible_actions()): # if not all actions have been taken
-            return node.expand()
+            return node.expand(auto_response)
         
-        return self.selection_policy(node)
+        return self.policy(node)
     
-    def selection_policy(self, node, C=1):
+    def policy(self, node, C=1):
         for child in node.children: 
-            val = child.get_UCT_value(C)
-            child.UCT_value = val
+            val = child.get_uct_value(C)
+            child.uct_value = val
 
-        vals = [child.get_UCT_value(C) for child in node.children]
+        vals = [child.get_uct_value(C) for child in node.children]
         return node.children[np.argmax(vals)]
     
 
@@ -57,9 +58,10 @@ class MCTSNode():
         self.results = collections.defaultdict(int)
         self.action_counts = collections.defaultdict(int)
 
-        self.UCT_value = float('-inf') # holds the UCT value at the time of selection
+        # # for plotting
+        self.uct_value = float('-inf') # intended to hold the uct value at the time of selection 
 
-    def get_UCT_value(self, C=1.4):
+    def get_uct_value(self, C=1.4):
         if self.parent is None:
             return float('inf')
         return self.value() + C * np.sqrt((2 * np.log(self.parent.visits) / (self.visits)))
@@ -73,7 +75,7 @@ class MCTSNode():
     def is_terminal(self):
         return self.state.is_terminal()
         
-    def expand(self):
+    def expand(self, auto_response=True):
         '''
         Should only be called if the node is not terminal and has unexplored actions.
 
@@ -84,9 +86,11 @@ class MCTSNode():
         actions = self.possible_actions()
         for action in actions:
             if action not in self.action_counts:
+
                 self.action_counts[action] += 1
                 opponent_state = self.state.take_action(action)
-                if opponent_state.is_terminal():
+                # self.children.append(MCTSNode(opponent_state, parent=self))
+                if opponent_state.is_terminal() or auto_response==False:
                     self.children.append(MCTSNode(opponent_state, parent=self))
                     return self.children[-1]
                 else:
@@ -112,9 +116,8 @@ class MCTSNode():
 
     def backpropagate(self, result):
         '''
-        How can I make this agnostic of the game type? 
-        It is not agnostic because results are stored as 1, -1, 0
-        which is specific to win/lose/draw.
+        Improve by making this agnostic to result/game type.
+        Results are stored as 1, -1, 0 which is specific to win/lose/draw.
         '''
         self.visits += 1
 

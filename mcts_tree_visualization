@@ -1,119 +1,119 @@
 // MCTS Tree
 digraph {
-	4689255056 [label="X  X  -
+	4686246576 [label="X  X  -
 
 O  -  -
 
 -  -  -
-UCT: -inf
+uct: -inf
 Winner: None
 Player: O" shape=box]
-	4689255056 -> 4683603488
-	4683603488 [label="X  X  O
+	4686246576 -> 4691173680
+	4691173680 [label="X  X  O
 
 O  -  -
 
--  -  X
-UCT: -0.17
+-  X  -
+uct: -0.58
 Winner: None
 Player: O" shape=box]
-	4683603488 -> 4689078544
-	4689078544 [label="X  X  O
+	4691173680 -> 4691174832
+	4691174832 [label="X  X  O
 
 O  O  X
 
--  -  X
-UCT: 0.82
+-  X  -
+uct: 0.53
 Winner: None
 Player: O" shape=box]
-	4689078544 -> 4682572800
-	4682572800 [label="X  X  O
+	4691174832 -> 4688180704
+	4688180704 [label="X  X  O
 
 O  O  X
 
-O  -  X
-UCT: 0.27
+O  X  -
+uct: 0.02
 Winner: -1
 Player: X" shape=box]
-	4689078544 -> 4682573472
-	4682573472 [label="X  X  O
+	4691174832 -> 4682577664
+	4682577664 [label="X  X  O
 
 O  O  X
 
-X  O  X
-UCT: 0.33
+X  X  O
+uct: 0.04
 Winner: 0
 Player: O" shape=box]
-	4683603488 -> 4689078016
-	4689078016 [label="X  X  O
+	4691173680 -> 4691175360
+	4691175360 [label="X  X  O
 
 O  X  O
 
--  -  X
-UCT: 0.81
+-  X  -
+uct: 0.51
 Winner: 1
 Player: O" shape=box]
-	4683603488 -> 4681806608
-	4681806608 [label="X  X  O
+	4691173680 -> 4691176464
+	4691176464 [label="X  X  O
 
 O  X  -
 
-O  -  X
-UCT: 0.81
+O  X  -
+uct: 0.51
 Winner: 1
 Player: O" shape=box]
-	4683603488 -> 4682573424
-	4682573424 [label="X  X  O
+	4691173680 -> 4684090336
+	4684090336 [label="X  X  O
 
 O  X  -
 
--  O  X
-UCT: 0.81
+-  X  O
+uct: 0.51
 Winner: 1
 Player: O" shape=box]
-	4689255056 -> 4683600272
-	4683600272 [label="X  X  X
+	4686246576 -> 4691177136
+	4691177136 [label="X  X  X
 
 O  O  -
 
 -  -  -
-UCT: -0.18
+uct: -0.58
 Winner: 1
 Player: O" shape=box]
-	4689255056 -> 4683602240
-	4683602240 [label="X  X  X
+	4686246576 -> 4691175120
+	4691175120 [label="X  X  X
 
 O  -  O
 
 -  -  -
-UCT: -0.18
+uct: -0.58
 Winner: 1
 Player: O" shape=box]
-	4689255056 -> 4683602048
-	4683602048 [label="X  X  X
+	4686246576 -> 4691175456
+	4691175456 [label="X  X  X
 
 O  -  -
 
 O  -  -
-UCT: -0.18
+uct: -0.58
 Winner: 1
 Player: O" shape=box]
-	4689255056 -> 4683600320
-	4683600320 [label="X  X  X
+	4686246576 -> 4691174544
+	4691174544 [label="X  X  X
 
 O  -  -
 
 -  O  -
-UCT: -0.18
+uct: -0.58
 Winner: 1
 Player: O" shape=box]
-	4689255056 -> 4683602144
-	4683602144 [label="X  X  X
+	4686246576 -> 4691175504
+	4691175504 [label="X  X  X
 
 O  -  -
 
 -  -  O
-UCT: -0.18
+uct: -0.58
 Winner: 1
 Player: O" shape=box]
 }

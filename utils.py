@@ -8,7 +8,7 @@ def visualize_mcts_tree(root):
         symbols = {1: 'X', -1: 'O', 0: '-'}
         board_str = '\n\n'.join(['  '.join([symbols[cell] for cell in row]) for row in node.state.board])
        
-        label = f"{board_str}\nUCT: {node.UCT_value:.2f}\nWinner: {node.state.get_winner()}\nPlayer: {symbols[node.player]}"
+        label = f"{board_str}\nuct: {node.uct_value:.2f}\nWinner: {node.state.get_winner()}\nPlayer: {symbols[node.player]}"
         dot.node(str(id(node)), label=label, shape='box')
         
         for child in node.children:
@@ -18,11 +18,8 @@ def visualize_mcts_tree(root):
     
     def calculate_uct_value(node, C=1.4):
         if node.parent is None:
-            return float('inf')  # Root node, no UCT value
+            return float('inf')  # Root node, no uct value
         return node.value() + C * np.sqrt((2 * np.log(node.parent.visits) / node.visits))
 
     add_nodes_edges(root)
     return dot
-
-dot = visualize_mcts_tree(root)
-dot.render('mcts_tree_visualization', format='png', view=True)
